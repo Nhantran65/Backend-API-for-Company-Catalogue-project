@@ -281,7 +281,7 @@
             "date_posted": "2023-09-01 12:10:00"
         }
     ],
-    "Tags": [
+    "tags": [
         {
             "tag_id": 1,
             "tag_name": "Interview Process"
@@ -289,16 +289,6 @@
         {
             "tag_id": 2,
             "tag_name": "Work Environment"
-        }
-    ],
-    "Story_Tags": [
-        {
-            "story_id": 1,
-            "tag_id": 2
-        },
-        {
-            "story_id": 2,
-            "tag_id": 1
         },
         {
             "tag_id": 3,
@@ -311,6 +301,32 @@
         {
             "tag_id": 5,
             "tag_name": "Challenges"
+        }
+    ],
+    "story_tags": [
+        {
+            "story_id": 1,
+            "tag_id": 1
+        },
+        {
+            "story_id": 1,
+            "tag_id": 5
+        },
+        {
+            "story_id": 2,
+            "tag_id": 3
+        },
+        {
+            "story_id": 2,
+            "tag_id": 4
+        },
+        {
+            "story_id": 3,
+            "tag_id": 6
+        },
+        {
+            "story_id": 3,
+            "tag_id": 7
         }
     ]
 }
