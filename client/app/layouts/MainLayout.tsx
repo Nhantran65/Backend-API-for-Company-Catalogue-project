@@ -8,9 +8,10 @@ const MainLayout:React.FC<MainLayoutProps> = ({children}) => {
     return (
         <div className="min-h-screen flex flex-col">
           <header className="bg-blue-600 text-white p-4 shadow-md">
-            <h1 className="text-xl md:text-2xl font-semibold">Companies Catalogue</h1>
+            {/* <h1 className="text-xl md:text-2xl font-semibold">Companies Catalogue</h1> */}
+            <Navbar />
           </header>
-          <Navbar />
+          
     
           <main className="flex-grow p-4 md:p-8">
             {children}

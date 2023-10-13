@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     <nav className="bg-blue-600 p-4 md:p-6">
       <div className="container mx-auto">
         <div className="flex justify-between">
-          {/* <div className="text-white font-semibold">Companies Catalogue</div> */}
+          <div className="text-white font-semibold">Companies Catalogue</div>
           <div className="md:hidden">
             <button onClick={() => setIsOpen(!isOpen)}>
               <i className="fas fa-bars text-white"></i>
