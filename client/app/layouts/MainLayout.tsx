@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import Navbar from '../components/Navbar';
 
 interface MainLayoutProps {
     children: ReactNode; 
@@ -9,6 +10,7 @@ const MainLayout:React.FC<MainLayoutProps> = ({children}) => {
           <header className="bg-blue-600 text-white p-4 shadow-md">
             <h1 className="text-xl md:text-2xl font-semibold">Companies Catalogue</h1>
           </header>
+          <Navbar />
     
           <main className="flex-grow p-4 md:p-8">
             {children}
