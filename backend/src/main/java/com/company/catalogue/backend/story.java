@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class story {
+public class Story {
     @Id
     private long id;
     private int company_id;
@@ -23,15 +23,31 @@ public class story {
     private String content;
     private Date posted;
     private int likes;
-    //private enum status;
+    private String Status; //there will be only two option "published" and "pending"
+    
+    public String getStatus() {
+        return Status;
+    }
 
-    public long getId() {
+    public void setStatus() {   //random status generator. prototype will be updated later.
+        boolean stat_id = Math.random() < 0.5;
+        if (stat_id == true){
+            Status = "Pending";
+        }
+        else{
+            Status = "Published";
+        }
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
+
 
     public int getCompany_id() {
         return company_id;

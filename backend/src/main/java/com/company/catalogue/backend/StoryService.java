@@ -6,12 +6,12 @@ import java.util.*;
 @Service
 public class StoryService {
     //@Autowired
-    private storyRepo repo; //change repository here
+    private StoryRepo repo; //change repository here
 
     public StoryService() {
 
     }
-    public Optional<story> getStory(int id) {
+    public Optional<Story> getStory(int id) {
         Optional opt = Optional.empty();
          for(story st: repo.findAll())
         if (id == st.getId()) {
@@ -20,22 +20,39 @@ public class StoryService {
         }
          return opt;
     }
-
-    public void addStory(story st){
-        this.repo.save(st);
+    public List<Story> getAllStory() {
+        return repo.findAll();
     }
 
-    //add data
+    public Story addStory(Story st){
+        int max = 100000;
+        int min = 500;
+        int likes = (int) ((Math.random() * (max - min)) + min);
+        st.setPosted(new Date());
+        st.setLikes(likes);
+        st.setStatus();
+        return repo.save(st);
+    }
+
+    
     public void deleteStory(int id) {
         repo.deleteById(id);
     }
 
-    public story updateStory(int id){
+    public Story updateStory(Story st, int id){
+        int max = 100000;
+        int min = 500;
+        int likes = (int) ((Math.random() * (max - min)) + min);
         return repo.findById(id)
-                .map(story -> {
-                    story.setContent("The world rests on your shoulder");
-                    story.setPosted(new Date());
-                    return repo.save(story);
+                .map(Story -> {
+                    Story.setCompany_id(st.getCompany_id());
+                    Story.setUser_id(st.getUser_id());
+                    Story.setTitle(st.getTitle());
+                    Story.setContent(st.getContent());
+                    Story.setPosted(new Date());
+                    Story.setLikes(likes);
+                    Story.setStatus();
+                    return repo.save(Story);
                 })
                 .orElseGet(() -> {
                     return null;
