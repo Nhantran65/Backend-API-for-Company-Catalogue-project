@@ -13,16 +13,17 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/v1")
 public class DemoGreetingController {
 
-    //demo hello with id and username
-    private static final  String greetingTemplate  = "Hello World, %s %s";
-    private final AtomicLong counter = new AtomicLong();
-    @GetMapping("/greeting")
-    public DemoGreeting greeting(@RequestParam( value = "gender", defaultValue = "0") boolean gender,
-                             @RequestParam( value = "userName", defaultValue = "user") String userName ) {
-        return DemoGreeting.builder()
-                .id(counter.incrementAndGet())
-                .content(String.format(greetingTemplate, gender ? "Mr. " : "Mrs. ", userName))
-                .build();
+	//demo hello with id and username
+	private static final String greetingTemplate = "Hello World, %s %s";
+	private final AtomicLong counter = new AtomicLong();
 
-    }
+	@GetMapping("/greeting")
+	public DemoGreeting greeting(@RequestParam(value = "gender", defaultValue = "0") boolean gender,
+								 @RequestParam(value = "userName", defaultValue = "user") String userName) {
+		return DemoGreeting.builder()
+				.id(counter.incrementAndGet())
+				.content(String.format(greetingTemplate, gender ? "Mr. " : "Mrs. ", userName))
+				.build();
+
+	}
 }
