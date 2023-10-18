@@ -1,5 +1,3 @@
--- TODO: tool to migrate the db
-
 -- Create DB
 CREATE DATABASE IF NOT EXISTS company_catalogue_api;
 USE company_catalogue_api;
@@ -28,6 +26,7 @@ CREATE TABLE IF NOT EXISTS user (
     role ENUM('intern', 'alumnus', 'admin'),
     profile_picture TEXT,
     bio TEXT,
+
     PRIMARY KEY (id)
 );
 
