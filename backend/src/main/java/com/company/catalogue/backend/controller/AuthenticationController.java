@@ -20,6 +20,7 @@ import java.io.IOException;
 @RestController
 public class AuthenticationController {
 
+    // Autowire JwtUtil, AuthenticationManager, and UserDetailsServiceImpl
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -29,21 +30,27 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    // Define a POST mapping for the "/authenticate" endpoint
     @PostMapping("/authenticate")
     public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationDTO authenticationDTO, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException {
         try {
+            // Authenticate the user with the provided credentials
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationDTO.getEmail(), authenticationDTO.getPassword()));
         } catch (BadCredentialsException e) {
+            // Handle bad credentials by throwing an exception
             throw new BadCredentialsException("Incorrect username or password!");
         } catch (DisabledException disabledException) {
+            // Handle a disabled user by sending an error response and returning null
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not activated");
             return null;
         }
 
+        // Load user details and generate a JWT token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationDTO.getEmail());
 
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
+        // Return an AuthenticationResponse containing the token
         return new AuthenticationResponse(jwt);
 
     }

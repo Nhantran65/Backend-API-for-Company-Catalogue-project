@@ -16,6 +16,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
+    // Replace this with a more secure method for storing secrets, such as environment variables or a secret management service.
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
     public String extractUsername(String token) {
@@ -33,7 +34,7 @@ public class JwtUtil {
 
     private Claims extractAllClaims(String token) {
         return Jwts
-                .parserBuilder()
+                .parser()
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
