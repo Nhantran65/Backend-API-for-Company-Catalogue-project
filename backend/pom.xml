@@ -34,6 +34,11 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+
 		<!-- JPA Data (We are going to use Repositories, Entities, Hibernate, etc...) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,7 +56,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-
 
 		<!-- Security -->
 		<dependency>
@@ -93,6 +97,14 @@
 			<version>0.12.3</version>
 		</dependency>
 		<!-- JWT -->
+    
+		<!-- Jupiter for testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 
