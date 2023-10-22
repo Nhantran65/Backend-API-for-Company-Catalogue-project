@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { companies } from '../constants/constants'
 import Image from 'next/image';
