@@ -41,7 +41,7 @@ public class StoryController {
 
 	// Update story by id provided as a query param e.g. <url-here>?id=3
 	@PutMapping("/update")
-	public void updateStory(@RequestBody Story new_story, @RequestParam int id) {
+	public void updateStory(@RequestBody StoryDTO new_story, @RequestParam int id) {
 		storyService.updateStory(new_story, id);
 	}
 

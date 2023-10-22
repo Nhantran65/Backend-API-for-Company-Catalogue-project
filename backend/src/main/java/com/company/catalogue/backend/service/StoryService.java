@@ -60,14 +60,20 @@ public class StoryService {
 		storyRepository.deleteById(id);
 	}
 
-	public Story updateStory(Story st, long id) {
+	public Story updateStory(StoryDTO st, long id) {
 		Optional<Story> optionalStory = storyRepository.findById(id);
+
+		Optional<Company> companyOptional = companyRepository.findById(st.getCompany_id());
+		Optional<User> userOptional = userRepository.findById(st.getUser_id());
+
+		Company company = companyOptional.orElseThrow();
+		User user = userOptional.orElseThrow();
 
 		if (optionalStory.isPresent()) {
 			Story story = optionalStory.get();
 
-			story.setUser(st.getUser());
-			story.setCompany(st.getCompany());
+			story.setUser(user);
+			story.setCompany(company);
 			story.setTitle(st.getTitle());
 			story.setContent(st.getContent());
 			story.setLikes(st.getLikes());
