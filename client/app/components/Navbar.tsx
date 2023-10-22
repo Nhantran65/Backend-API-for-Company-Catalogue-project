@@ -1,6 +1,6 @@
-"use client"
-import React, { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
               <i className="fas fa-bars text-white"></i>
             </button>
           </div>
-          <div className={`md:flex ${isOpen ? 'block' : 'hidden'}`}>
+          <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
             <ul className="flex flex-col md:flex-row md:space-x-6">
               <li>
                 <Link href="/" className="text-white">
@@ -37,12 +37,22 @@ const Navbar: React.FC = () => {
                   About
                 </Link>
               </li>
+              <li>
+                <Link href="/register" className="text-white">
+                  Register
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="text-white">
+                   Login
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
