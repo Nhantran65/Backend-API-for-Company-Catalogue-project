@@ -1,5 +1,6 @@
 package com.company.catalogue.backend.controller;
 
+import com.company.catalogue.backend.dto.StoryDTO;
 import com.company.catalogue.backend.model.Story;
 import com.company.catalogue.backend.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @RestController
 public class StoryController {
 
-	private StoryService storyService;
+	private final StoryService storyService;
 
 	@Autowired
 	public StoryController(StoryService storyService) {
@@ -34,8 +35,8 @@ public class StoryController {
 
 	// Add new story to the database. Data is passed in through raw json.
 	@PostMapping("/add")
-	public void addStory(@RequestBody Story new_story) {
-		storyService.addStory(new_story);
+	public Story addStory(@RequestBody StoryDTO new_story) {
+		return storyService.addStory(new_story);
 	}
 
 	// Update story by id provided as a query param e.g. <url-here>?id=3

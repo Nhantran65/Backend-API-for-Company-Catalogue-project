@@ -16,7 +16,7 @@ public class CompanyService {
         this.repo = repo;
     }
 
-    public Optional<Company> getCompany(int id) {
+    public Optional<Company> getCompany(long id) {
         return  repo.findById(id);
     }
 
@@ -28,11 +28,11 @@ public class CompanyService {
         return repo.save(company);
     }
 
-    public void deleteCompany(int id) {
+    public void deleteCompany(long id) {
         repo.deleteById(id);
     }
 
-    public Company updateCompany(Company update, int id) {
+    public Company updateCompany(Company update, long id) {
         Optional<Company> optionalCompany = repo.findById(id);
 
         if (optionalCompany.isPresent()) {
