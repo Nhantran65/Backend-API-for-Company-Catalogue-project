@@ -16,7 +16,7 @@ public class DemoGreetingController {
 	//demo hello with id and username
 	private static final String greetingTemplate = "Hello World, %s %s";
 	private final AtomicLong counter = new AtomicLong();
-
+	// Value of id should be increased 1 when user request one time
 	@GetMapping("/greeting")
 	public DemoGreeting greeting(@RequestParam(value = "gender", defaultValue = "0") boolean gender,
 								 @RequestParam(value = "userName", defaultValue = "user") String userName) {
