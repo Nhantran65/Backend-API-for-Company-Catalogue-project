@@ -30,6 +30,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.25",
     "@types/uuid": "^9.0.6",
     "uuid": "^9.0.1"
   }

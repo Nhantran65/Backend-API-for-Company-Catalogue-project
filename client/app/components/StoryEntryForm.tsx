@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { stories } from "../constants/constants";
-import { v4 as uuidv4 } from 'uuid';
+
 
 const StoryForm: React.FC = () => {
   const date = new Date();
   
-  //.find((stories) => stories.featured);
-
-
   const [formData, setFormData] = useState({
-    Id: uuidv4(),
-    Company_id: 0,
-    User_id: 0,
-    Title: "",
-    Content: "",
-    Posted: date, 
-    Likes: 0, 
-    Status: "", 
+    story_id: 1,
+    company_id: 0,
+    user_id: 0,
+    title: "",
+    content: "",
+    date_posted: "", 
+    likes: 0, 
+    status: "", 
   });
   
 
@@ -29,10 +26,23 @@ const StoryForm: React.FC = () => {
    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+
    };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    stories.push(formData);
+
+    setFormData({
+      story_id: 0,
+      company_id: 0,
+      user_id: 0,
+      title: "",
+      content: "",
+      date_posted: "", 
+      likes: 0, 
+      status: "",
+    });
 
     // Mockup of form submission. In a real-world scenario, this would involve
     // sending the formData to the server, receiving a token, and storing it.
@@ -41,14 +51,14 @@ const StoryForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" id="storyform">
+    <form onSubmit={handleSubmit} className="space-y-4" id="storyForm">
     <div className="rounded-lg overflow-hidden">
       <div className="mt-3">
         <label className="block">Company Id Number</label>
         <input
-          type="text"
-          name="Company_id"
-          value={formData.Company_id}
+          type="number"
+          name="company_id"
+          value={formData.company_id}
           onChange={handleInputChange}
           className="p-2 border rounded w-full"
         />
@@ -56,9 +66,9 @@ const StoryForm: React.FC = () => {
       <div className="mt-3">
         <label className="block">User Id Number</label>
         <input
-          type="text"
-          name="User_id"
-          value={formData.User_id}
+          type="number"
+          name="user_id"
+          value={formData.user_id}
           onChange={handleInputChange}
           className="p-2 border rounded w-full"
         />
@@ -67,8 +77,8 @@ const StoryForm: React.FC = () => {
         <label className="block">Story Title</label>
         <input
           type="text"
-          name="Title"
-          value={formData.Title}
+          name="title"
+          value={formData.title}
           onChange={handleInputChange}
           className="p-2 border rounded w-full"
         />
@@ -76,9 +86,9 @@ const StoryForm: React.FC = () => {
       <div className="mt-3">
         <label className="block">Brief Description</label>
         <textarea 
-          name="Content"
+          name="content"
           rows="4"
-          value={formData.Content}
+          value={formData.content}
           onChange={handleInputChange}
           className="p-2 border rounded w-full"
           />
@@ -87,8 +97,8 @@ const StoryForm: React.FC = () => {
         <label className="block">Likes</label>
         <input
           type="number"
-          name="Likes"
-          value={formData.Likes}
+          name="likes"
+          value={formData.likes}
           onChange={handleInputChange}
           className="p-2 border rounded w-full"
         />
@@ -97,12 +107,11 @@ const StoryForm: React.FC = () => {
       <div className="mt-3">
         <label className="block">Status</label>
         <select 
-        name="Status"
-        value={formData.Status}
+        name="status"
         onChange={handleSelect}
         className="p-2 border rounded w-full">
-            <option>Published</option>
-            <option>Pending</option>
+            <option value="Published">Published</option>
+            <option value="Pending">Pending</option>
         </select>
       </div>
       <div className="mt-3">
@@ -113,7 +122,7 @@ const StoryForm: React.FC = () => {
         </button>
         </div>
         </div>
-      
+        
     </form>
   );
 };

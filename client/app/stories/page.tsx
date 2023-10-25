@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout"
 import StoryForm from "../components/StoryEntryForm";
 import { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
-import DisplayStory from "../components/displayStory";
+import StoryList from "../components/StoryList";
 
 const StoryPage: React.FC = () => {
 
@@ -13,9 +13,15 @@ const StoryPage: React.FC = () => {
   const handleShow = () => setShow(true);
   return (
     <MainLayout>
+      <StoryList />
+
+      
       <div className="max-w-md mx-auto mt-8">
-        <DisplayStory />
-        <button onClick={handleShow} className="block bg-purple-600 text-white font-bold px-4 py-2 rounded">
+        <button 
+        onClick={handleShow} 
+        className="block btn btn-primary text-white font-bold px-4 py-2 rounded"
+        
+        >
         + Add Stories
         </button>
       </div>
