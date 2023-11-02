@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import { pic } from "../assets";
@@ -21,7 +22,7 @@ const HeroSection = () => {
 
           <div className="w-full md:w-4/12 ml-auto mr-auto px-4 mt-10 md:mt-0">
             <div className="relative h-[400px] md:h-[600px] overflow-hidden">
-              <Image src={'https://source.unsplash.com/1600x900/?ITcompany'} alt="IT Internship" layout="fill" />
+              <Image src={'https://source.unsplash.com/1600x900/?iconic'} alt="IT Internship" layout="fill" />
             </div>
           </div>
         </div>
