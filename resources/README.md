@@ -21,8 +21,8 @@
 - Default port: `localhost:3306/`
 ---
 2. Commands:
-(Make sure you are in `resources`)
+(`cd` to `resources`)
 
-- To migrate the DB: `mysql -u root -p < migration.migrate.sql`
-- To nuke the DB: `mysql -u root -p < migration/nuke.sql`
+- To migrate the DB: `mysql -u root -p < db/migration/migrate.sql`
+- To nuke the DB: `mysql -u root -p < db/migration/nuke.sql`
 - To populate dummy data to the DB for local development: `mysql -u root -p < population/populate.sql`
