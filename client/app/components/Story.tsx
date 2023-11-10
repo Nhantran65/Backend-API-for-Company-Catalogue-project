@@ -3,7 +3,7 @@ import React from 'react'
 import { stories } from '../constants/constants';
 import { companies } from '../constants/constants';
 
-const Story = (props) => {
+const Story = (props:any) => {
   return (
     <>
     <div className="bg-white shadow-xl rounded-lg overflow-hidden mt-4">

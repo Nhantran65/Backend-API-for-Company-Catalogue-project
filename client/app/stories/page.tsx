@@ -1,5 +1,5 @@
 "use client"
-import MainLayout from "../layouts/MainLayout"
+
 import StoryForm from "../components/StoryEntryForm";
 import { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
@@ -12,7 +12,7 @@ const StoryPage: React.FC = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <MainLayout>
+    <>
       <StoryList />
 
       
@@ -44,8 +44,8 @@ const StoryPage: React.FC = () => {
           </button>
         </Modal.Footer>
       </Modal>
-
-    </MainLayout>
+      </>
+  
   );
 }
 
