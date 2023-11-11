@@ -12,13 +12,13 @@ To build the container you will need to provide 3 build arguments. These are:
 - **DB_HOST**\
 This argument is meant for the host of the database.
 This could be an IP or a domain name depending on your setup.
-In our RaspberryPi this value will most likely be some kind of reference to the host machine (172.17.0.1 or host.docker.internal for Windows)\
-<br>
+In our RaspberryPi this value will most likely be some kind of reference to the host machine (172.17.0.1 or host.docker.internal for Windows)
+
 - **DB_USERNAME**\
 This argument is meant for the username of your MySQL user.
 This user must have permissions in the company catalogue database already implemented in MySQL.
-Make sure this user was created with a host that allows connections from outside of localhost as connecting from a docker container might not work otherwise.\
-<br>
+Make sure this user was created with a host that allows connections from outside of localhost as connecting from a docker container might not work otherwise.
+
 - **DB_PASSWORD**\
 This argument is meant for the password of your MySQL user.
 Make sure to keep this private and do not upload any secrets directly to the repo where they're easily readable and exploitable.
