@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.company.catalogue</groupId>
-	<artifactId>backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>company-catalogue-api</artifactId>
+	<version>1.0.0</version>
 	<name>backend</name>
 	<description>backend for Company Catalogue</description>
 	<properties>
@@ -111,6 +111,7 @@
 
 
 	<build>
+		<finalName>company-catalogue-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
