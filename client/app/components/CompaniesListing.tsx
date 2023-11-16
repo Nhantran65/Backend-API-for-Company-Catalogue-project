@@ -4,22 +4,37 @@ import Pagination from "./Pagination";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import Spinner from "./Spinner";
 const ITEMS_PER_PAGE = 5;
 
 const CompaniesListing = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [companiesBE, setCompaniesBE] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false)
   
   const getAllCompanies = async () => {
-    const companiesFromBackend = await axios.get(`/api/company`);
+    try {
+      setIsLoading(true);
+      const companiesFromBackend = await axios.get(`/api/company`);
 
     
     setCompaniesBE(companiesFromBackend.data)
+    } catch (error:any) {
+      console.log(error.message)
+    } finally {
+      setIsLoading(false)
+    }
   };
 
   useEffect(() => {
     getAllCompanies();
   }, []);
+
+  if (isLoading) {
+    return (
+      <Spinner />
+    )
+  }
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
  
