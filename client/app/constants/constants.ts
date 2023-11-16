@@ -283,6 +283,17 @@ const stories = [
       "I learned a lot during my summer internship at SoftSprint. The team is supportive and projects challenging.",
     date_posted: "2023-09-01 09:15:00",
     likes: 35,
+    status: "Pending",
+  },
+  {
+    story_id: 3,
+    company_id: 3,
+    user_id: 3,
+    title: "Life of an intern at Nextech",
+    content:
+      "Fun and extremely instructive experience. not to mentain the high pay that comes with the hardwork. Definitely reccomend.",
+    date_posted: "2023-07-26 11:15:00",
+    likes: 234,
     status: "Published",
   },
 ];
@@ -327,6 +338,14 @@ const tags = [
     tag_id: 5,
     tag_name: "Challenges",
   },
+  {
+    tag_id: 6,
+    tag_name: "Lucrative",
+  },
+  {
+    tag_id: 7,
+    tag_name: "Nexatech",
+  },
 ];
 
 const story_tags = [
@@ -339,12 +358,20 @@ const story_tags = [
     tag_id: 5,
   },
   {
+    story_id: 1,
+    tag_id: 7,
+  },
+  {
     story_id: 2,
     tag_id: 3,
   },
   {
     story_id: 2,
     tag_id: 4,
+  },
+  {
+    story_id: 2,
+    tag_id: 5,
   },
   {
     story_id: 3,
