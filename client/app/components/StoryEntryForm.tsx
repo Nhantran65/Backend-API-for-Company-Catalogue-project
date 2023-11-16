@@ -52,27 +52,36 @@ const StoryForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" id="storyForm">
+    <div>
+      <h2 className="text-2xl font-semibold text-gray-900 dark:text-white"> + Add Stories</h2>
+    </div>
+   
     <div className="rounded-lg overflow-hidden">
-      <div className="mt-3">
-        <label className="block">Company Id Number</label>
+      <div className="flex space-x-4">
+      <div className="mt-3 w-1/2">
+        <label className="block">Company</label>
         <input
           type="number"
           name="company_id"
           value={formData.company_id}
           onChange={handleInputChange}
-          className="p-2 border rounded w-full"
+          className="p-2 border border-gray-500 rounded-sm w-full focus:border-primary-500"
         />
       </div>
-      <div className="mt-3">
-        <label className="block">User Id Number</label>
+      <div className="mt-3 w-1/2">
+        <label className="block">Username</label>
         <input
           type="number"
           name="user_id"
           value={formData.user_id}
           onChange={handleInputChange}
-          className="p-2 border rounded w-full"
+          className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
         />
       </div>
+
+
+      </div>
+      
       <div className="mt-3">
         <label className="block">Story Title</label>
         <input
@@ -80,7 +89,7 @@ const StoryForm: React.FC = () => {
           name="title"
           value={formData.title}
           onChange={handleInputChange}
-          className="p-2 border rounded w-full"
+          className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
         />
       </div>
       <div className="mt-3">
@@ -90,7 +99,7 @@ const StoryForm: React.FC = () => {
           rows="4"
           value={formData.content}
           onChange={handleInputChange}
-          className="p-2 border rounded w-full"
+          className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
           />
       </div>
       <div className="mt-3">
@@ -100,7 +109,7 @@ const StoryForm: React.FC = () => {
           name="likes"
           value={formData.likes}
           onChange={handleInputChange}
-          className="p-2 border rounded w-full"
+          className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
         />
       </div>
       
@@ -109,16 +118,18 @@ const StoryForm: React.FC = () => {
         <select 
         name="status"
         onChange={handleSelect}
-        className="p-2 border rounded w-full">
+        className="p-2 border border-gray-500 rounded w-full focus:border-primary-500">
             <option value="Published">Published</option>
             <option value="Pending">Pending</option>
         </select>
       </div>
       <div className="mt-3">
-        <button
-          type="submit"
-          className="block bg-purple-600 text-white font-bold px-4 py-2 rounded">
-          Submit
+      <button 
+        type="submit" 
+        className="block btn btn-primary text-white font-bold px-4 py-2 rounded"
+        
+        >
+        + Add Stories
         </button>
         </div>
         </div>
