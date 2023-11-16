@@ -1,5 +1,6 @@
 package com.company.catalogue.backend.controller;
 
+import com.company.catalogue.backend.dto.CompanyDTO;
 import com.company.catalogue.backend.model.Company;
 import com.company.catalogue.backend.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,14 @@ public class CompanyController {
 
     // Add company to the DB. Data is passed in through raw JSON
     @PostMapping("/add")
-    public void addCompany(@RequestBody Company company) {
+    public void addCompany(@RequestBody CompanyDTO company) {
         companyService.addCompany(company);
     }
 
     // Update company by id
     @PutMapping("/update")
-    public void updateCompany(@RequestBody Company update, @RequestParam int id) {
-        companyService.updateCompany(update, id);
+    public void updateCompany(@RequestBody CompanyDTO newCompany, @RequestParam int id) {
+        companyService.updateCompany(newCompany, id);
     }
 
     // Delete story by id

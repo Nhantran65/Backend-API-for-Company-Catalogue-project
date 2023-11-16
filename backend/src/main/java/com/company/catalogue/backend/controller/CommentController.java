@@ -1,10 +1,9 @@
 package com.company.catalogue.backend.controller;
 
 
+import com.company.catalogue.backend.dto.CommentDTO;
 import com.company.catalogue.backend.model.Comment;
-import com.company.catalogue.backend.model.Story;
 import com.company.catalogue.backend.service.CommentService;
-import com.company.catalogue.backend.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RestController
 public class CommentController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @Autowired
     public CommentController(CommentService commentService){ this.commentService =  commentService;};
@@ -33,13 +32,13 @@ public class CommentController {
 
     // Add new story to the database. Data is passed in through raw json.
     @PostMapping("/add")
-    public void addComment(@RequestBody Comment new_comment){
+    public void addComment(@RequestBody CommentDTO new_comment){
         commentService.addComment(new_comment);
     }
 
     // Update a comment by its ID
     @PutMapping("/update")
-    public void updateComment(@RequestBody Comment new_comment, @RequestParam int id){
+    public void updateComment(@RequestBody CommentDTO new_comment, @RequestParam int id){
         commentService.updateComment(new_comment, id);
     }
 
