@@ -47,10 +47,10 @@ const CompaniesListing = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedCompanies.map((company: any, index: any) => (
           <div
-            key={company.company_id}
+            key={company.id}
             className="border rounded-lg overflow-hidden hover:shadow-lg"
           >
-            <Link href={`/companies/${company.company_id}`}>
+            <Link href={`/companies/${company.id}`}>
               <div className="relative w-full h-40">
                 <Image
                   src={`https://source.unsplash.com/1600x900/?${company.industry}`}
