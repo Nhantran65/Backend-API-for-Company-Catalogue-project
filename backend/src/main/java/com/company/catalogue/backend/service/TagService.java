@@ -17,7 +17,7 @@ public class TagService {
     @Autowired
     public TagService( TagRepository tagRepository){ this.tagRepository = tagRepository;};
 
-    public Optional<Tag> getTag(int id) {
+    public Optional<Tag> getTag(long id) {
         return tagRepository.findById(id);
     }
 
@@ -29,11 +29,11 @@ public class TagService {
         return tagRepository.save(tag);
     }
 
-    public void deleteTag(int id){
+    public void deleteTag(long id){
         tagRepository.deleteById(id);
     }
 
-    public Tag updateTag(Tag newTag, int id){
+    public Tag updateTag(Tag newTag, long id){
         Optional<Tag> optionalTag = tagRepository.findById(id);
 
         if(optionalTag.isPresent()){

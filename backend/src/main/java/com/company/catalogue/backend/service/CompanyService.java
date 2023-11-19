@@ -1,6 +1,9 @@
 package com.company.catalogue.backend.service;
 
+import com.company.catalogue.backend.dto.CompanyDTO;
 import com.company.catalogue.backend.model.Company;
+import com.company.catalogue.backend.model.Story;
+import com.company.catalogue.backend.model.User;
 import com.company.catalogue.backend.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,27 @@ public class CompanyService {
         return repo.findAll();
     }
 
-    public Company addCompany(Company company) {
-        return repo.save(company);
+    public Company addCompany(CompanyDTO company) {
+
+        Company newCompany = new Company();
+
+        newCompany.setName(company.getName());
+        newCompany.setDescription(company.getDescription());
+        newCompany.setEstablished( new Date());
+        newCompany.setIndustry(company.getIndustry());
+        newCompany.setLocation(company.getLocation());
+        newCompany.setLogo(company.getLogo());
+        newCompany.setWebsite(company.getWebsite());
+        newCompany.setOther_details(newCompany.getOther_details());
+
+        return repo.save(newCompany);
     }
 
     public void deleteCompany(long id) {
         repo.deleteById(id);
     }
 
-    public Company updateCompany(Company update, long id) {
+    public Company updateCompany(CompanyDTO update, long id) {
         Optional<Company> optionalCompany = repo.findById(id);
 
         if (optionalCompany.isPresent()) {
@@ -41,11 +56,9 @@ public class CompanyService {
             company.setName(update.getName());
             company.setDescription(update.getDescription());
             company.setIndustry(update.getIndustry());
-            company.setEstablished(update.getEstablished());
             company.setLogo(update.getLogo());
             company.setWebsite(update.getWebsite());
             company.setLocation(update.getLocation());
-            company.setOther_details(update.getOther_details());
 
             return repo.save(company);
         } else {
