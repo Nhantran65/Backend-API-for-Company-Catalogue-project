@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { pic } from "../assets";
 const HeroSection = () => {
   return (
     <section className="relative bg-blue-600 py-16 md:py-24">
