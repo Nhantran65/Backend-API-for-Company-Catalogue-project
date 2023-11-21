@@ -13,8 +13,7 @@ const MainLayout:React.FC<MainLayoutProps> = ({children}) => {
             {/* <h1 className="text-xl md:text-2xl font-semibold">Companies Catalogue</h1> */}
             <Navbar />
           </header>
-          
-    
+        
           <main className="flex-grow p-4 md:p-8">
             {children}
           </main>

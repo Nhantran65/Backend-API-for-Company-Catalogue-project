@@ -4,29 +4,32 @@ import { useState, useEffect, useRef } from "react";
 import Tag from "./Tag";
 
 
-const TagList = ({tags, storyTagClick}) => {
+import React, { FC } from 'react';
 
-  
-  let renderedTags = tags.map((tag, index) => {
-    return(
-      <Tag key={index} 
-          name={tag.tag_name.toLowerCase()} 
-          index={tag.tag_id}
-          clickTag={storyTagClick}
-          />
+interface TagListProps {
+  tags: string[];
+  storyTagClick: (index: number) => void;
+}
+
+const TagList: FC<TagListProps> = ({ tags, storyTagClick }) => {
+  let renderedTags = tags.map((tag: string, index: number) => {
+    return (
+      <Tag
+        key={index}
+        name={tag.toLowerCase()}
+        index={index}
+        clickTag={storyTagClick}
+      />
     );
-    
   });
-  
+
   return (
-    
     <>
-    <ul id='tags' className="hover-shadow">
-      {renderedTags}
-    </ul> 
+      <ul id='tags' className="hover-shadow">
+        {renderedTags}
+      </ul>
     </>
-    
   );
 }
 
-export default TagList
+export default TagList;

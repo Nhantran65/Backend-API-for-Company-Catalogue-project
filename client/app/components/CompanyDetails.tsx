@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { tags } from "../constants/constants";
+import { tags, story_tags } from "../constants/constants";
 import Story from "./Story";
 
 import React, {useState} from "react";
@@ -10,6 +10,21 @@ import React, {useState} from "react";
 const CompanyDetails =  ({ data: company, stories}: { data: any; stories: any[] }) => {
  
   console.log(stories)
+
+  stories.forEach(story => {
+    story.tag = [];
+  })
+
+  story_tags.forEach(story_tag => {
+      const foundStoryIndex = stories.findIndex(story => story.story_id == story_tag.story_id);
+
+      if (foundStoryIndex !== -1) {
+        if (!stories[foundStoryIndex].tag) stories[foundStoryIndex].tag = [];
+        const name = tags.find(tagName => story_tag.tag_id == tagName.tag_id);
+        stories[foundStoryIndex].tag.push(name.tag_name.toLowerCase()); 
+      }
+  });
+  
   const [listTag, setListTags] = useState([]);
   const [listTagId, setTagId] = useState([]);
 
@@ -67,7 +82,7 @@ const CompanyDetails =  ({ data: company, stories}: { data: any; stories: any[] 
               date={story.date_posted} 
               likes={story.likes}
               storylistTagClick={onTagClick} 
-              tagslist={tags}
+              tagslist={story?.tag}
               />
           ))}
         </ul>
