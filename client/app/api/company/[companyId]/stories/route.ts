@@ -8,8 +8,6 @@ export async function GET(
   try {
     if (!params.companyId) {
       return new NextResponse("comapny Id not found", { status: 400 });
-    } else {
-      console.log("id of comp ", params.companyId);
     }
 
     // SQL query to select stories where the company_id matches

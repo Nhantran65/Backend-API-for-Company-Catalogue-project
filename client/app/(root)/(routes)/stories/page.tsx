@@ -1,9 +1,9 @@
 "use client"
 
-import StoryForm from "../components/StoryEntryForm";
+import StoryForm from "../../../components/StoryEntryForm";
 import { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
-import StoryList from "../components/StoryList";
+import StoryList from "../../../components/StoryList";
 
 const StoryPage: React.FC = () => {
 
