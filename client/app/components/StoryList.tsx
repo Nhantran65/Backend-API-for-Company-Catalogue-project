@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Story from "./Story";
 import axios from "axios";
 import Spinner from "./Spinner";
+import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 export interface IStory {
   id: number;
@@ -9,13 +11,16 @@ export interface IStory {
   user_id: string;
   title: string;
   content: string;
-  posted: Date;
+  posted: Date | any;
   likes: number;
   status: string;
+  first_name?: string;
+  email?: string;
+  role?: string;
 }
 
 const StoryList = () => {
-  const [stories2, setStories] = useState<any>([]);
+  const [stories, setStories] = useState<any>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,6 +30,7 @@ const StoryList = () => {
       const storiesFromBackend = await axios.get(`/api/stories`);
 
       setStories(storiesFromBackend.data);
+      console.log(storiesFromBackend.data);
     } catch (error: any) {
       console.log(error.message);
     } finally {
@@ -41,19 +47,13 @@ const StoryList = () => {
   }
 
   return (
-    <section className="bg-gray-100 py-12 mb-4">
-      <div className="container mx-auto px-20">
-        <h2 className="text-3xl font-bold mb-8 text-center">Stories</h2>
-        {stories2.map((story: IStory) => {
-          return (
-            <Story
-              key={story.id}
-              data={story}
-            />
-          );
-        })}
-      </div>
-    </section>
+    <>
+      {stories.map((story: IStory) => {
+        return <Story key={story.id} data={story} />;
+      })}
+
+      <Button>Have something to share? Create your own story here</Button>
+    </>
   );
 };
 

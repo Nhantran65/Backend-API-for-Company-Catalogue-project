@@ -4,15 +4,17 @@ import { ICompany } from "../page";
 interface CompanyInfoProps {
   data: ICompany;
 }
+
+export function formatDate(isoDateString: string) {
+  const date = new Date(isoDateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 const ComanyInfo = ({ data }: CompanyInfoProps) => {
-  function formatDate(isoDateString: string) {
-    const date = new Date(isoDateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
+  
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -31,7 +33,7 @@ const ComanyInfo = ({ data }: CompanyInfoProps) => {
           <div>{data.website}</div>
         </div>
       </div>
-      <hr />
+      {/* <hr /> */}
       {/* {category && (
             <ListingCategory
                 icon = {category.icon}
