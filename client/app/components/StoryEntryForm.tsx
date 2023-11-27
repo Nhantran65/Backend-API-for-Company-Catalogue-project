@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Link from "next/link";
-import { stories } from "../constants/constants";
-import 'bootstrap/dist/css/bootstrap.css';
 
 
 const StoryForm: React.FC = () => {
@@ -29,16 +26,6 @@ const StoryForm: React.FC = () => {
     }));
 
   };
-
-  //HANDLE AUTOMATION.
-  //  const handleAutomation = () => {
-  //   setFormData((prevState) => ({ ...prevState, 
-  //     story_id: formData.story_id++,
-  //     company_id: 2,
-  //     date_posted: date.toString(),
-  //     user_id: 2
-  //   }));
-  // };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,20 +63,6 @@ const StoryForm: React.FC = () => {
               className="inline-flex items-center text-sm p-2.5 justify-center w-full border-3 rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-50"
             />
           </div>
-          {/* <div className="mt-3 w-1/2">
-            <label className="block">Username</label>
-            <input
-              type="number"
-              name="user_id"
-              value={formData.user_id}
-              onChange={handleInputChange}
-              className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
-            />
-          </div> */}
-
-
-
-
           <div className="mt-3 w-1/2">
             <label className="block font-semibold">Story Title</label>
             <input
@@ -111,43 +84,6 @@ const StoryForm: React.FC = () => {
             className="inline-flex items-center gap-1 justify-center w-full border-3 rounded-lg font-semibold cursor-pointer hover:text-gray-600 hover:bg-gray-50"
           />
         </div>
-        {/* <div className="mt-3">
-          <label className="block">Likes</label>
-          <input
-            type="number"
-            name="likes"
-            value={formData.likes}
-            onChange={handleInputChange}
-            className="p-2 border border-gray-500 rounded w-full focus:border-primary-500"
-          />
-        </div>
-
-        <div className="mt-3">
-          <ul className="grid sm:grid-cols-2">
-            <li>
-              <input type="checkbox" id="react-publish"  value="Published" className="hidden peer" />
-              <label htmlFor="react-publish" className="inline-flex items-center justify-center w-24 border-5 rounded-lg font-semibold cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 hover:bg-gray-50 peer-checked:text-gray-600">
-                Published
-              </label>
-            </li>
-            <li>
-            <input type="checkbox" id="react-pending"  value="Published" className="hidden peer" />
-              <label htmlFor="react-pending" className="inline-flex items-center justify-center w-24 border-5 rounded-lg font-semibold cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 hover:bg-gray-50 peer-checked:text-gray-600">
-                Pending
-              </label>
-            </li>
-          </ul>
-
-
-           <label className="block">Status</label>
-          <select
-            name="status"
-            onChange={handleInputChange}
-            className="p-2 border border-gray-500 rounded w-full focus:border-primary-500">
-            <option value="Published">Published</option>
-            <option value="Pending">Pending</option>
-          </select> 
-      </div>*/}
         <div className="mt-3 mb-3 ">
           <button type="submit" className="inline-flex items-center gap-1 justify-center py-2 px-4 border-3 rounded-lg font-semibold cursor-pointer hover:text-gray-600 hover:bg-gray-50">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2563EB" className="w-8 h-8 hover:opacity-300">

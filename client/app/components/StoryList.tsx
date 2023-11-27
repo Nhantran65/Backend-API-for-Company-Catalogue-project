@@ -1,10 +1,8 @@
 import React, { FC, useState } from 'react';
 import Story from './Story';
 import { stories, tags, companies, story_tags } from '../constants/constants';
-import './TagsFile/Tagger.css';
-import CloseIcon from '@mui/icons-material/Close';
 
-interface StoryListProps {}
+interface StoryListProps { }
 
 const StoryList: FC<StoryListProps> = () => {
   const [listTag, setListTags] = useState<string[]>([]);
@@ -73,20 +71,22 @@ const StoryList: FC<StoryListProps> = () => {
 
   let InputTagList = listTag.map((tag, index) => {
     return (
-      <li key={index} className="tag-item">
+      <li key={index} className="bg-gray-200 inline-flex text-sm m-0.5 px-2 py-2 rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-300">
         <span className="tag-title">{tag}</span>
-        <CloseIcon className="close" onClick={() => removeTags(index)} />
-      </li>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 bg-black rounded-lg text-white ml-1 text-sm justify-center" onClick={() => removeTags(index)}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </li> 
     );
   });
 
   return (
     <section className="bg-gray-50 py-12 mb-4">
-      <div className="container mx-auto px-20">
-        <div className="input-container mx-auto">
-          <ul id="tags">{InputTagList}</ul>
+      <div className="mx-auto px-20">
+        <div className="border w-[min(80vw,600px)] flex items-center mt-1 p-0.5 rounded-lg border-solid border-grey-900   mx-auto">
+          <ul className='flex flex-wrap m-1 mb-1 mx-0 p-0'>{InputTagList}</ul>
           <input
-            className="tags-input"
+            className="grow h-12 text-sm px-0 py-2 border-none focus:outline-transparent outline-none"
             type="text"
             placeholder="Search..."
             onKeyDown={handleTagChange}

@@ -1,9 +1,4 @@
-import { story_tags } from '@/app/constants/constants';
-import './Tagger.css';
-import { useState, useEffect, useRef } from "react";
 import Tag from "./Tag";
-
-
 import React, { FC } from 'react';
 
 interface TagListProps {
@@ -25,7 +20,7 @@ const TagList: FC<TagListProps> = ({ tags, storyTagClick }) => {
 
   return (
     <>
-      <ul id='tags' className="hover-shadow">
+      <ul className="hover-shadow">
         {renderedTags}
       </ul>
     </>

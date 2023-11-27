@@ -1,5 +1,5 @@
 
-import './Tagger.css';
+
 import React, { FC } from 'react';
 
 interface TagProps {
@@ -14,8 +14,8 @@ const Tag: FC<TagProps> = ({ name, index, clickTag }) => {
   };
 
   return (
-    <li key={index} className="tag-item cursor-pointer hover:text-gray-600 hover:bg-gray-300" onClick={passTag}>
-      <span className='tag-title'>{name}</span>
+    <li key={index} className="bg-gray-200 inline-block text-sm m-0.5 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-300" onClick={passTag}>
+      <span>{name}</span>
     </li>
   );
 }

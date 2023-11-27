@@ -2,7 +2,6 @@
 import MainLayout from "../layouts/MainLayout"
 import StoryList from "../components/StoryList";
 import StoryForm from "../components/StoryEntryForm";
-import 'bootstrap/dist/css/bootstrap.css'; 
 
 const StoryPage: React.FC = () => {
 
