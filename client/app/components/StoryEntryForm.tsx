@@ -50,7 +50,7 @@ const StoryForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 content-end" id="storyForm">
+    <form onSubmit={handleSubmit} className="space-y-4 content-end p-4 md:p-5" id="storyForm">
       <div className="rounded-lg overflow-hidden">
         <div className="flex space-x-4">
           <div className="mt-3 w-1/2">

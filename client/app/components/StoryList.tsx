@@ -1,12 +1,15 @@
 import React, { FC, useState } from 'react';
 import Story from './Story';
+import StoryForm from './StoryEntryForm';
 import { stories, tags, companies, story_tags } from '../constants/constants';
+import ModalContent from "../components/modal";
 
 interface StoryListProps { }
 
 const StoryList: FC<StoryListProps> = () => {
   const [listTag, setListTags] = useState<string[]>([]);
   const [listTagId, setTagId] = useState<number[]>([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   stories.forEach((story) => {
     story.tag = [];
@@ -53,7 +56,7 @@ const StoryList: FC<StoryListProps> = () => {
   const filterByTagSet = new Set(listTag);
   let filterStories = stories.filter(
     (story) =>
-      listTag.length === 0 || story.tag.some((t) => filterByTagSet.has(t))
+      listTag.length === 0 || listTag.every((t) => story.tag.includes(t))
   );
 
   let renderedStories = filterStories.map((story) => (
@@ -76,12 +79,32 @@ const StoryList: FC<StoryListProps> = () => {
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 bg-black rounded-lg text-white ml-1 text-sm justify-center" onClick={() => removeTags(index)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
-      </li> 
+      </li>
     );
   });
 
+  //modal content
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+
+
   return (
-    <section className="bg-gray-50 py-12 mb-4">
+    <section className="bg-gray-50 py-12 px-5 mb-4">
+      <button
+        onClick={() => openModal()}
+        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button">
+        Add Your Story.
+      </button>
+      <ModalContent isVisible={isModalOpen} onClose={closeModal} />
+
+
       <div className="mx-auto px-20">
         <div className="border w-[min(80vw,600px)] flex items-center mt-1 p-0.5 rounded-lg border-solid border-grey-900   mx-auto">
           <ul className='flex flex-wrap m-1 mb-1 mx-0 p-0'>{InputTagList}</ul>
