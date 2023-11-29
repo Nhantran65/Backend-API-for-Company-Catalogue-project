@@ -1,13 +1,38 @@
 "use client";
 
 import Image from "next/image";
+import { tags, story_tags } from "../constants/constants";
+import Story from "./Story";
 
-import React from "react";
+import React, {useState} from "react";
 
 
-const CompanyDetails =  ({ data: company, stories }: { data: any; stories: any[] }) => {
+const CompanyDetails =  ({ data: company, stories}: { data: any; stories: any[] }) => {
  
   console.log(stories)
+
+  stories.forEach(story => {
+    story.tag = [];
+  })
+
+  story_tags.forEach(story_tag => {
+      const foundStoryIndex = stories.findIndex(story => story.story_id == story_tag.story_id);
+
+      if (foundStoryIndex !== -1) {
+        if (!stories[foundStoryIndex].tag) stories[foundStoryIndex].tag = [];
+        const name = tags.find(tagName => story_tag.tag_id == tagName.tag_id);
+        stories[foundStoryIndex].tag.push(name.tag_name.toLowerCase()); 
+      }
+  });
+  
+  const [listTag, setListTags] = useState([]);
+  const [listTagId, setTagId] = useState([]);
+
+  const onTagClick = (tag, tagId) => { //get tag id, 
+    //get tag name and tag id.
+    setListTags([...listTag, tag]);
+    setTagId([...listTagId, tagId]);
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -48,18 +73,20 @@ const CompanyDetails =  ({ data: company, stories }: { data: any; stories: any[]
         <h3 className="text-2xl font-semibold mb-4">Stories & Experiences</h3>
         <ul className="space-y-4">
           {stories.map((story) => (
-            <li key={story.story_id} className="p-4 border rounded-lg hover:bg-gray-100 transition duration-300">
-              <h4 className="text-lg font-semibold mb-2">{story.title}</h4>
-              <p className="text-sm text-gray-500 mb-2">{story.content}</p>
-              <div className="flex justify-between items-center">
-                <p className="text-xs text-gray-400">Posted on: {story.date_posted}</p>
-                <div className="flex items-center">
-                  <span className="text-xs text-gray-500 mr-2">{story.likes} likes</span>
-                </div>
-              </div>
-            </li>
+          
+              <Story
+              key={story.story_id} 
+              id={story.story_id}
+              title={story.title} 
+              content={story.content} 
+              date={story.date_posted} 
+              likes={story.likes}
+              storylistTagClick={onTagClick} 
+              tagslist={story?.tag}
+              />
           ))}
         </ul>
+        
       </div>
     </div>
   );
