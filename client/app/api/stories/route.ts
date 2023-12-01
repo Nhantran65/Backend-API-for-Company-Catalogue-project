@@ -1,29 +1,23 @@
 import { NextResponse } from "next/server";
 import pool from "@/mysql/db";
+import prismadb from "@/lib/prismadb";
 
-export  async function GET() {
-    try {
-        const query = `
-    SELECT 
-      s.id as story_id, 
-      s.company_id, 
-      s.title, 
-      s.content, 
-      s.posted, 
-      s.likes, 
-      s.status, 
-      u.first_name, 
-      u.role,
-      u.email
-    FROM 
-      story s
-    JOIN 
-      user u ON s.user_id = u.id;
-  `;
-        const [rows] = await pool.query<any>(query)
-        return NextResponse.json(rows) 
-    } catch (error:any) {
-        console.log("get-stories ", error.message)
-        return new NextResponse("Internal error", {status: 500})
-    }
+export async function GET() {
+  try {
+    // Use Prisma's findMany method to get all stories with company and user information
+    const stories = await prismadb.story.findMany({
+      include: {
+        user: true, // Include the user information
+        company: {
+          select: { name: true }, // Select only the company name
+        },
+        
+      },
+    });
+
+    return NextResponse.json(stories);
+  } catch (error: any) {
+    console.log("get-stories ", error.message);
+    return new NextResponse("Internal error", { status: 500 });
+  }
 }

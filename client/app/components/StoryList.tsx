@@ -4,23 +4,19 @@ import axios from "axios";
 import Spinner from "./Spinner";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { User } from "@prisma/client";
+import {Story as StoryType} from "@prisma/client"
 
-export interface IStory {
-  id: number;
-  company_id: number;
-  user_id: string;
-  title: string;
-  content: string;
-  posted: Date | any;
-  likes: number;
-  status: string;
-  first_name?: string;
-  email?: string;
-  role?: string;
+interface StoryListProps {
+  data: (StoryType & {
+    company: {
+      name: string
+    }, 
+    user: User,
+  })[]
 }
-
 const StoryList = () => {
-  const [stories, setStories] = useState<any>([]);
+  const [stories, setStories] = useState<any>();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,7 +26,7 @@ const StoryList = () => {
       const storiesFromBackend = await axios.get(`/api/stories`);
 
       setStories(storiesFromBackend.data);
-      console.log(storiesFromBackend.data);
+      console.log(storiesFromBackend);
     } catch (error: any) {
       console.log(error.message);
     } finally {
@@ -42,13 +38,13 @@ const StoryList = () => {
     getAllstories();
   }, []);
 
-  if (isLoading) {
+  if (isLoading || !stories) {
     return <Spinner />;
   }
 
   return (
     <>
-      {stories.map((story: IStory) => {
+      {stories.map((story:any) => {
         return <Story key={story.id} data={story} />;
       })}
 
