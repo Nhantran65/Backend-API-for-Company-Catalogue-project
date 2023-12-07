@@ -1,0 +1,29 @@
+version: "3"
+services:
+  spring-api:
+    build:
+      context: ./backend
+      args:
+        DB_HOST: "host.docker.internal"
+        DB_USERNAME: "<PLACEHOLDER>"
+        DB_PASSWORD: "<PLACEHOLDER>"
+    ports:
+      - "8080:8082"
+    restart: unless-stopped
+    networks:
+      company-catalogue:
+        ipv4_address: 192.168.92.2
+  nextjs-app:
+    build: ./client
+    ports:
+      - "80:3000"
+    restart: unless-stopped
+    networks:
+      company-catalogue:
+        ipv4_address: 192.168.92.3
+networks:
+  company-catalogue:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.92.0/24"
