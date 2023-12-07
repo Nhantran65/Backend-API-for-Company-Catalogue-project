@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 interface TagListProps {
   tags: string[];
-  storyTagClick: (index: number) => void;
+  storyTagClick: (name: string, index: number) => void;
 }
 
 const TagList: FC<TagListProps> = ({ tags, storyTagClick }) => {

@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout"
 import StoryList from "../components/StoryList";
 
 const StoryPage: React.FC = () => {
-  
 
   return (
     <MainLayout>
