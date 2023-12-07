@@ -1,0 +1,17 @@
+FROM mysql:8.2
+
+ARG ARG_MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_ROOT_PASSWORD=$ARG_MYSQL_ROOT_PASSWORD
+
+ARG ARG_MYSQL_USER=user
+ENV MYSQL_USER=$ARG_MYSQL_USER
+
+ARG ARG_MYSQL_PASSWORD=user
+ENV MYSQL_PASSWORD=$ARG_MYSQL_PASSWORD
+
+ENV MYSQL_DATABASE=company_catalogue_api
+
+ADD ./migration/migrate.sql /docker-entrypoint-initdb.d
+ADD ./population/populate.sql /docker-entrypoint-initdb.d
+
+EXPOSE 3306
