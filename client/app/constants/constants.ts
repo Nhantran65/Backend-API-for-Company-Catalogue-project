@@ -273,6 +273,7 @@ const stories = [
     date_posted: "2023-10-12 14:30:00",
     likes: 50,
     status: "Published",
+    tag: []
   },
   {
     story_id: 2,
@@ -284,6 +285,7 @@ const stories = [
     date_posted: "2023-09-01 09:15:00",
     likes: 35,
     status: "Pending",
+    tag: []
   },
   {
     story_id: 3,
@@ -295,6 +297,7 @@ const stories = [
     date_posted: "2023-07-26 11:15:00",
     likes: 234,
     status: "Published",
+    tag: []
   },
 ];
 
