@@ -1,18 +1,30 @@
 version: "3"
 services:
+  mysql:
+    build: ./resources/db
+    restart: unless-stopped
+    networks:
+      company-catalogue:
+        ipv4_address: 192.168.92.2
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
   spring-api:
     build:
       context: ./backend
       args:
-        DB_HOST: "host.docker.internal"
-        DB_USERNAME: "<PLACEHOLDER>"
-        DB_PASSWORD: "<PLACEHOLDER>"
+        DB_HOST: "mysql"
+        DB_USERNAME: "PLACEHOLDER"
+        DB_PASSWORD: "PLACEHOLDER"
+    depends_on:
+      - mysql
     ports:
       - "8080:8082"
     restart: unless-stopped
     networks:
       company-catalogue:
-        ipv4_address: 192.168.92.2
+        ipv4_address: 192.168.92.3
   nextjs-app:
     build: ./client
     ports:
@@ -20,7 +32,7 @@ services:
     restart: unless-stopped
     networks:
       company-catalogue:
-        ipv4_address: 192.168.92.3
+        ipv4_address: 192.168.92.4
 networks:
   company-catalogue:
     ipam:
