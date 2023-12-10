@@ -90,6 +90,12 @@ export async function POST(req: Request) {
     console.log("Success");
 
     return new NextResponse("sync Success", { status: 200 });
+  } else if (eventType === "session.created") {
+    console.log("user hass logged in")
+    return new NextResponse("sync Success", { status: 200 });
+  } else if (eventType === "session.ended") {
+    console.log("ended")
+    return new NextResponse("sync Success", { status: 200 });
   }
 
   return new Response("", { status: 200 });

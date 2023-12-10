@@ -26,7 +26,6 @@ const StoryList = () => {
       const storiesFromBackend = await axios.get(`/api/stories`);
 
       setStories(storiesFromBackend.data);
-      console.log(storiesFromBackend);
     } catch (error: any) {
       console.log(error.message);
     } finally {

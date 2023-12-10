@@ -42,7 +42,7 @@ model Story {
   user_id    Int
   title      String?      @db.VarChar(300)
   content    String?      @db.Text
-  posted     DateTime?    @db.DateTime(0)
+  posted     DateTime?    @default(now())
   likes      Int?         @default(0)
   status     StoryStatus?
   comments   Comment[]
@@ -60,7 +60,7 @@ model Comment {
   story_id    Int
   user_id     Int
   content     String?   @db.Text
-  date_posted DateTime? @db.DateTime(0)
+  date_posted DateTime? @default(now())
   story       Story     @relation(fields: [story_id], references: [id], onDelete: Cascade, map: "comment_ibfk_1")
   user        User      @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "comment_ibfk_2")
 

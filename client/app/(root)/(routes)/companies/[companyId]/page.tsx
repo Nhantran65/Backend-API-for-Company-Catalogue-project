@@ -6,6 +6,7 @@ import ComanyInfo from "./components/ComanyInfo";
 import CompanyHeader from "./components/CompanyHeader";
 import axios from "axios";
 import Spinner from "@/app/components/Spinner";
+import StoryList from "@/app/components/StoryList";
 export interface ICompany {
   id: number;
   name: string;
@@ -83,6 +84,7 @@ const CompanyIdPage = () => {
         data={companyfromBackend}
       />
       <ComanyInfo  data={companyfromBackend}/>
+      
     </div>
   );
 };

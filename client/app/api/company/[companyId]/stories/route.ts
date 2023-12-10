@@ -1,5 +1,6 @@
-import pool from "@/mysql/db";
 import { NextResponse } from "next/server";
+import pool from "@/mysql/db";
+import prismadb from "@/lib/prismadb";
 
 export async function GET(
   req: Request,
@@ -11,12 +12,15 @@ export async function GET(
     }
 
     // SQL query to select stories where the company_id matches
-    const query = `
-    SELECT * FROM story
-    WHERE company_id = ?
-    AND status = 'published'  `;
+    
 
-    const stories = await pool.query(query, [params.companyId]);
+    const stories = await prismadb.story.findMany({
+      where: {
+        company_id: parseInt(params.companyId as string,10),
+        status: 'published',
+      },
+      include: { user: true, company: true }
+    })
     return NextResponse.json(stories);
   } catch (error: any) {
     console.log("get-company", error.message);
