@@ -1,7 +1,7 @@
 "use client";
 import CommentSection from "@/app/components/CommentSection";
 import Spinner from "@/app/components/Spinner";
-import { Story } from "@prisma/client";
+import { Comment, Story } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -13,7 +13,7 @@ import { useState } from "react";
 const StoryIdPage = () => {
   const params = useParams();
   const [story, setStory] = useState<Story | any>();
-  const [comments, setComments] = useState<any>();
+  const [comments, setComments] = useState<Comment[]>([]);
 
 
   // Function to handle adding new comment
@@ -25,14 +25,13 @@ const StoryIdPage = () => {
     const fetchStory = async () => {
       try {
         const res = await axios.get(`/api/stories/${params.storyId}`);
-        console.log(res.data)
         setStory(res.data);
       } catch (error: any) {
         console.log(error.message);
       }
     };
     fetchStory();
-  }, [params.storyId,setComments]);
+  }, [params.storyId,comments,setComments]);
 
   if (!story) {
     return (

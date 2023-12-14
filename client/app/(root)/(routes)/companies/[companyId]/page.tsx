@@ -61,8 +61,6 @@ const CompanyIdPage = () => {
     const fetchStories = async () => {
       try {
         const res = await axios.get(`/api/company/${params.companyId}/stories`);
-        console.log(res.data[0]);
-
         setStories(res.data[0]);
       } catch (error) {
         console.error("Error fetching stories: ", error);

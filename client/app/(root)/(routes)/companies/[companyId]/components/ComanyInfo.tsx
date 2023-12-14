@@ -5,7 +5,7 @@ interface CompanyInfoProps {
   data: ICompany;
 }
 
-export function formatDate(isoDateString: string) {
+export function formatDate(isoDateString: any) {
   const date = new Date(isoDateString);
   return date.toLocaleDateString("en-US", {
     year: "numeric",

@@ -38,11 +38,12 @@ const CommentSection = ({ comments, storyId, onNewComment }: CommentSectionProps
     e.preventDefault();
     setLoading(true);
     try {
-      postComment();
+      await postComment();
       toast({
         description: "Success.",
       });
       onNewComment(newComment);
+      router.refresh();
     } catch (error:any) {
       toast({
         variant: "destructive",
