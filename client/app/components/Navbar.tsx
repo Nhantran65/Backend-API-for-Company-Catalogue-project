@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { SignInButton, auth , UserButton, useAuth} from "@clerk/nextjs";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const {userId} = useAuth()
+ 
   return (
     <nav className="bg-blue-600 p-4 md:p-6">
       <div className="container mx-auto">
@@ -37,16 +39,19 @@ const Navbar: React.FC = () => {
                   About
                 </Link>
               </li>
-              <li>
-                <Link href="/register" className="text-white">
-                  Register
-                </Link>
+              {userId ? (
+                <li className="text-white">
+                <SignInButton>
+                <UserButton afterSignOutUrl="/" />
+                </SignInButton>
               </li>
-              <li>
-                <Link href="/login" className="text-white">
-                   Login
-                </Link>
+              ): (
+                <li className="text-white">
+                <SignInButton>
+                  Join us
+                </SignInButton>
               </li>
+              )}
             </ul>
           </div>
         </div>
