@@ -1,4 +1,4 @@
-import { pic } from "../assets";
+
 const companies = [
   {
     company_id: 1,
@@ -7,7 +7,7 @@ const companies = [
     description: "Leading provider of cloud-based solutions.",
     location: "San Francisco, CA",
     website: "www.techbreeze.com",
-    logo: pic,
+    logo: "www.softsprint.com/logo.png",
     industry: "Cloud Services",
     established: "2015-03-21",
     other_details: {

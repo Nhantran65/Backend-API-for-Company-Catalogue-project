@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id            Int       @id @unique(map: "id") @default(autoincrement())
+  name          String    @unique(map: "name") @db.VarChar(255)
+  description   String?   @db.Text
+  location      String?   @db.VarChar(255)
+  website       String?   @db.VarChar(255)
+  logo          String?   @db.VarChar(255)
+  industry      String?   @db.VarChar(255)
+  established   DateTime? @db.Date
+  other_details String?   @db.Text
+  stories       Story[]
+
+  @@map("company")
+}
+
+model User {
+  id              Int       @id @unique(map: "id") @default(autoincrement())
+  first_name      String?   @db.VarChar(255)
+  last_name       String?   @db.VarChar(255)
+  email           String    @unique(map: "email") @db.VarChar(255)
+  role            UserRole?
+  profile_picture String?   @db.Text
+  bio             String?   @db.Text
+  comments        Comment[]
+  stories         Story[]
+
+  @@map("user")
+}
+
+model Story {
+  id         Int          @id @unique(map: "id") @default(autoincrement())
+  company_id Int
+  user_id    Int
+  title      String?      @db.VarChar(300)
+  content    String?      @db.Text
+  posted     DateTime?    @default(now())
+  likes      Int?         @default(0)
+  status     StoryStatus?
+  comments   Comment[]
+  company    Company      @relation(fields: [company_id], references: [id], onDelete: Cascade, map: "story_ibfk_1")
+  user       User         @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "story_ibfk_2")
+  story_tags StoryTag[]   @ignore
+
+  @@index([company_id], map: "company_id")
+  @@index([user_id], map: "user_id")
+  @@map("story")
+}
+
+model Comment {
+  id          Int       @id @unique(map: "id") @default(autoincrement())
+  story_id    Int
+  user_id     Int
+  content     String?   @db.Text
+  date_posted DateTime? @default(now())
+  story       Story     @relation(fields: [story_id], references: [id], onDelete: Cascade, map: "comment_ibfk_1")
+  user        User      @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "comment_ibfk_2")
+
+  @@index([story_id], map: "story_id")
+  @@index([user_id], map: "user_id")
+  @@map("comment")
+}
+
+model Tag {
+  id         Int        @id @unique(map: "id") @default(autoincrement())
+  name       String?    @db.VarChar(100)
+  story_tags StoryTag[] @ignore
+
+  @@map("tag")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model StoryTag {
+  story_id Int
+  tag_id   Int
+  story    Story @relation(fields: [story_id], references: [id], onDelete: Cascade, map: "story_tag_ibfk_1")
+  tag      Tag   @relation(fields: [tag_id], references: [id], onDelete: Cascade, map: "story_tag_ibfk_2")
+
+  @@index([story_id], map: "story_id")
+  @@index([tag_id], map: "tag_id")
+  @@map("story_tag")
+  @@ignore
+}
+
+enum UserRole {
+  intern
+  alumnus
+  admin
+}
+
+enum StoryStatus {
+  pending
+  published
+}
