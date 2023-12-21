@@ -13,23 +13,36 @@ interface StoryProps {
 }
 const Story = ({ data }: StoryProps) => {
   return (
-    <>
-    <div className="bg-white shadow-xl rounded-lg overflow-hidden mt-4">
-        <div className="flex justify-between items-center p-6 space-x-6">
-            <div className="flex-1 truncate">
-            <div className="flex items-center space-x-3">
-                <h3 className="text-2xl font-bold truncate">{props.title}</h3>
-            </div>
-                <p className="mt-1 text-gray-5000">{props.content}</p>
-                <p className="mt-2 text-sm text-gray-400">Status: {props.status}</p>
-                <p className="mt-1 text-sm text-gray-400">
-                  Published: {props.date}
-                </p>
-            </div>
+    <div key={data.id} className="bg-white p-6 rounded-lg shadow-lg mb-6 hover:shadow-xl transition-shadow duration-300">
+    <div className="flex items-start space-x-4">
+      <Avatar className="flex-shrink-0">
+        <AvatarImage
+          src={`https://source.unsplash.com/900x600/?${data.user.first_name}`}
+          alt={`${data.user.first_name}'s avatar`}
+        />
+        <AvatarFallback delayMs={600}>
+          {data.user.first_name}
+        </AvatarFallback>
+      </Avatar>
+      <div className="flex-grow">
+        <h2 className="text-xl font-semibold text-gray-800">{data.title}</h2>
+        <p className="text-gray-700 mt-2 line-clamp-3">{data.content}</p>
+        <div className="flex justify-between items-center mt-4">
+          <div>
+            <p className="text-sm text-gray-600">{data.user.first_name}</p>
+            <p className="text-sm text-gray-500">{data.user.role}</p>
+          </div>
+          <p className="text-sm text-gray-400">{formatDate(data.posted)}</p>
         </div>
+      </div>
     </div>
-    </>
-  )
-}
+    <Link href={`/stories/${data.id}`} passHref>
+      <div className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition duration-300">
+        Find Out More
+      </div>
+    </Link>
+  </div>
+  );
+};
 
-export default Story
+export default Story;
